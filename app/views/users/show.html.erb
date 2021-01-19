@@ -1,4 +1,21 @@
 <h1>User info</h1>
+<table class="table-user">
+  <tbody>
+    <tr></tr>
+    <tr>
+      <th>name</th>
+      <th><%= @user.name %></th>
+    </tr>
+    <tr>
+      <th>introduction</th>
+      <th></th>
+    </tr>
+  </tbody>
+</table>
+
+<% if @user.id == current_user.id %>
+  <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
+<% end %>
 
 
 <h1>New book</h1>
@@ -15,7 +32,7 @@
 <% end %>
 
 <h1>Books</h1>
-<table>
+<table class="table-book">
   <thead>
     <th>Title</th>
     <th>Opinion</th>
@@ -24,7 +41,7 @@
   <tbody>
     <% @books.each do |book| %>
     <tr>
-      <th><%= book.title %></th>
+      <th><%= link_to book.title, "/books/#{book.id}" %></th>
       <th><%= book.body %></th>
     </tr>
     <% end %>
