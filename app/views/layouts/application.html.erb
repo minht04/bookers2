@@ -10,6 +10,7 @@
   </head>
 
   <body>
+    
     <% if user_signed_in? %>
       <li>
         <%= link_to 'Home', user_path(current_user.id) %>
@@ -37,6 +38,8 @@
         <%= link_to "login", new_user_session_path %>
       </li>
     <% end %>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
     <%= yield %>
   </body>
 </html>

@@ -15,28 +15,15 @@
 </table>
 
 
-
-
-
 <% if @user.id == current_user.id %>
   <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
 <% else %>
-  <p><%= link_to "プロフィール編集", edit_user_path(current_user.id) %></p>
+  <p><%= link_to "プロフィール編集", user_path(current_user.id) %></p>
 <% end %>
 
-
-<h1>New book</h1>
-<%= form_with model: @book, local: true do |f| %>
-
-  <div class="field">
-    <h4>Title</h4>
-    <%= f.text_field :title %>
-
-    <h4>Opinion</h4>
-    <%=f.text_area :body %><br>
-  </div>
-  <%= f.submit 'Create Book' %>
-<% end %>
+<!--ここから-->
+<%=render 'books/list', book: @book %>
+<!--ここまで-->
 
 <h1>Books</h1>
 <table class="table-book">
