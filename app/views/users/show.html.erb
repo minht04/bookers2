@@ -1,4 +1,5 @@
 <h1>User info</h1>
+<%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
 <table class="table-user">
   <tbody>
     <tr></tr>
@@ -13,8 +14,14 @@
   </tbody>
 </table>
 
+
+
+
+
 <% if @user.id == current_user.id %>
   <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
+<% else %>
+  <p><%= link_to "プロフィール編集", edit_user_path(current_user.id) %></p>
 <% end %>
 
 
