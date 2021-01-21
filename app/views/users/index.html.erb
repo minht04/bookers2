@@ -1,31 +1,45 @@
-<!--ここから-->
-<%= render 'users/list' %>
-<!--ここまで-->
-
-<% if @user.id == current_user.id %>
-  <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
-<% else %>
-  <p><%= link_to "プロフィール編集", edit_user_path(current_user.id) %></p>
-<% end %>
-
-<!--ここから-->
-<%=render 'books/list', book: @book %>
-<!--ここまで-->
-
-<h1>Users</h1>
-<table>
-  <thead>
-    <th>image</th>
-    <th>name</th>
-    <th colspan="3"></th>
-  </thead>
-  <tbody>
-    <% @users.each do |user| %>
-    <tr>
-      <th><%= attachment_image_tag user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg", size: "40x40" %></th>
-      <th><%= user.name %></th>
-      <th><%=link_to 'Show', user_path(user.id) %></th>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-3">
+      <!--ここから-->
+      <%= render 'users/list' %>
+      <!--ここまで-->
+      <br>
+      <div class="row">
+      <% if @user.id == current_user.id %>
+        <%= link_to edit_user_path(@user), class: "btn btn-outline-secondary btn-block" do %>
+          <i class="fas fa-user-cog"></i>
+        <% end %>
+      <% else %>
+        <%= link_to edit_user_path(current_user.id), class: "btn btn-outline-secondary btn-block" do %>
+          <i class="fas fa-user-cog"></i>
+        <% end %>
+      <% end %>
+      </div>
+      <!--ここから-->
+      <%=render 'books/list', book: @book %>
+      <!--ここまで-->
+    </div>
+    <div class="col-md-8 offset-md-1">
+      <h2>Users</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>image</th>
+            <th>name</th>
+            <th colspan="3"></th>
+            </tr>
+         </thead>
+        <tbody>
+          <% @users.each do |user| %>
+          <tr>
+            <th><%= attachment_image_tag user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg", size: "40x40" %></th>
+            <th><%= user.name %></th>
+            <th><%=link_to 'Show', user_path(user.id) %></th>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
